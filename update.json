@@ -1,6 +1,6 @@
 {
-    "version": "v11",
-    "versionCode": 110000,
-    "zipUrl": "https://github.com/Rev4N1/PhotosUnlimited/releases/download/v11/PhotosUnlimited-v11.zip",
+    "version": "v1",
+    "versionCode": 10000,
+    "zipUrl": "https://github.com/Rev4N1/PhotosUnlimited/releases/download/v1/PhotosUnlimited-v1.zip",
     "changelog": "https://raw.githubusercontent.com/Rev4N1/PhotosUnlimited/main/CHANGELOG.md"
 }

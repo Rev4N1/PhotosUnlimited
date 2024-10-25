@@ -1,4 +1,4 @@
-## Google Photos Unlimited v0.2
+## Google Photos Unlimited v1
 - Full rebase module into PIFork
 - Now you can make a custom spoofing
 
@@ -9,4 +9,4 @@
 - Remove Google Photos from Magisk denyList if needed
 - Fix compatiblility with lastest hOS version
 
-_[Previous changelogs](https://github.com/Rev4N1/GPhotosUnlimited/releases)_
+_[Previous changelogs](https://github.com/Rev4N1/PhotosUnlimited/releases)_
