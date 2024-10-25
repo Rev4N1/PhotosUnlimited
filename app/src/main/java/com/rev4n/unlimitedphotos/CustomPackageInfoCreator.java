@@ -1,4 +1,4 @@
-package es.chiteroman.playintegrityfix;
+package com.rev4n.unlimitedphotos;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.Signature;

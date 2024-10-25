@@ -6,12 +6,12 @@
 #include "json/single_include/nlohmann/json.hpp"
 #include "dobby.h"
 
-#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, "PIF/Native", __VA_ARGS__)
+#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, "FGP/Native", __VA_ARGS__)
 
-#define DEX_FILE_PATH "/data/adb/modules/playintegrityfix/classes.dex"
+#define DEX_FILE_PATH "/data/adb/modules/unlimitedphotos/classes.dex"
 
-#define JSON_FILE_PATH "/data/adb/modules/playintegrityfix/pif.json"
-#define CUSTOM_JSON_FILE_PATH "/data/adb/modules/playintegrityfix/custom.pif.json"
+#define JSON_FILE_PATH "/data/adb/modules/unlimitedphotos/fgp.json"
+#define CUSTOM_JSON_FILE_PATH "/data/adb/modules/unlimitedphotos/custom.fgp.json"
 
 static int verboseLogs = 0;
 static int spoofBuild = 1;
@@ -82,7 +82,7 @@ static void doHook() {
         reinterpret_cast<dobby_dummy_func_t *>(&o_system_property_read_callback));
 }
 
-class PlayIntegrityFix : public zygisk::ModuleBase {
+class PhotosUnlimited : public zygisk::ModuleBase {
 public:
     void onLoad(zygisk::Api *api, JNIEnv *env) override {
         this->api = api;
@@ -105,8 +105,8 @@ public:
         std::string_view process(rawProcess);
         std::string_view dir(rawDir);
 
-        isGms = dir.ends_with("/com.google.android.gms");
-        isGmsUnstable = process == "com.google.android.gms.unstable";
+        isGms = dir.ends_with("/com.google.android.apps.photos");
+        isGmsUnstable = process == "com.google.android.apps.photos";
 
         env->ReleaseStringUTFChars(args->nice_name, rawProcess);
         env->ReleaseStringUTFChars(args->app_data_dir, rawDir);
@@ -116,7 +116,7 @@ public:
             return;
         }
 
-        // We are in GMS now, force unmount
+        // We are in Photos now, force unmount
         api->setOption(zygisk::FORCE_DENYLIST_UNMOUNT);
 
         if (!isGmsUnstable) {
@@ -275,7 +275,7 @@ private:
 
         LOGD("JNI: Loading module class");
         auto loadClass = env->GetMethodID(clClass, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
-        auto entryClassName = env->NewStringUTF("es.chiteroman.playintegrityfix.EntryPoint");
+        auto entryClassName = env->NewStringUTF("com.rev4n.unlimitedphotos.EntryPoint");
         auto entryClassObj = env->CallObjectMethod(dexCl, loadClass, entryClassName);
 
         auto entryClass = (jclass) entryClassObj;
@@ -333,6 +333,6 @@ static void companion(int fd) {
     jsonVector.clear();
 }
 
-REGISTER_ZYGISK_MODULE(PlayIntegrityFix)
+REGISTER_ZYGISK_MODULE(PhotosUnlimited)
 
 REGISTER_ZYGISK_COMPANION(companion)

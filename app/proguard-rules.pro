@@ -1,4 +1,4 @@
--keep class es.chiteroman.playintegrityfix.EntryPoint {public <methods>;}
--keep class es.chiteroman.playintegrityfix.CustomProvider
--keep class es.chiteroman.playintegrityfix.CustomKeyStoreSpi
--keep class es.chiteroman.playintegrityfix.CustomPackageInfoCreator
+-keep class com.rev4n.unlimitedphotos.EntryPoint {public <methods>;}
+-keep class com.rev4n.unlimitedphotos.CustomProvider
+-keep class com.rev4n.unlimitedphotos.CustomKeyStoreSpi
+-keep class com.rev4n.unlimitedphotos.CustomPackageInfoCreator

@@ -1,8 +1,26 @@
-# Remove any definitely conflicting modules that are installed
-if [ -d /data/adb/modules/safetynet-fix ]; then
-    touch /data/adb/modules/safetynet-fix/remove
-    ui_print "! Universal SafetyNet Fix (USNF) module will be removed on next reboot"
-fi
+# Replace/hide conflicting Pixel Configurations files to disable them
+directory="/system/product/etc/sysconfig"
+for APP in $directory/pixel_experience_*; do
+	# Extract the year from the APP name
+	year="${APP#*pixel_experience_}"
+	year="${year:0:4}"
+
+    # Check if the year is higher than 2019
+	if [ "$year" -gt 2019 ]; then
+        case $APP in
+            /system/*) ;;
+            *) PREFIX=/system;;
+        esac
+        HIDEPATH=$MODPATH$PREFIX$APP
+        mkdir -p $(dirname $HIDEPATH)
+        if [ "$KSU" = "true" -o "$APATCH" = "true" ]; then
+            mknod $HIDEPATH c 0 0
+        else
+            touch $HIDEPATH
+        fi
+    fi
+done
+
 
 # Replace/hide conflicting custom ROM injection app folders/files to disable them
 LIST=$MODPATH/example.app_replace.list
@@ -58,17 +76,3 @@ for APP in $(grep -v '^#' $LIST); do
         fi
     fi
 done
-
-# Work around AOSPA PropImitationHooks conflict when their persist props don't exist
-if [ -n "$(resetprop ro.aospa.version)" ]; then
-    for PROP in persist.sys.pihooks.first_api_level persist.sys.pihooks.security_patch; do
-        resetprop | grep -q "\[$PROP\]" || resetprop -n -p "$PROP" ""
-    done
-fi
-
-# Work around supported custom ROM PixelPropsUtils conflict when spoofProvider is disabled
-if [ -n "$(resetprop persist.sys.pixelprops.pi)" ]; then
-    resetprop -n -p persist.sys.pixelprops.pi false
-    resetprop -n -p persist.sys.pixelprops.gapps false
-    resetprop -n -p persist.sys.pixelprops.gms false
-fi

@@ -1,4 +1,4 @@
-package es.chiteroman.playintegrityfix;
+package com.rev4n.unlimitedphotos;
 
 import java.io.IOException;
 import java.io.InputStream;

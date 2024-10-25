@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "es.chiteroman.playintegrityfix"
+    namespace = "com.rev4n.unlimitedphotos"
     compileSdk = 34
     ndkVersion = "27.2.12479018"
     buildToolsVersion = "34.0.0"
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "es.chiteroman.playintegrityfix"
+        applicationId = "com.rev4n.unlimitedphotos"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -85,7 +85,7 @@ tasks.register("copyFiles") {
 tasks.register<Zip>("zip") {
     dependsOn("copyFiles")
 
-    archiveFileName.set("PlayIntegrityFork.zip")
+    archiveFileName.set("PhotosUnlimited.zip")
     destinationDirectory.set(project.rootDir.resolve("out"))
 
     from(project.rootDir.resolve("module"))

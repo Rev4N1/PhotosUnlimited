@@ -1,4 +1,4 @@
-package es.chiteroman.playintegrityfix;
+package com.rev4n.unlimitedphotos;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -265,6 +265,6 @@ public final class EntryPoint {
     }
 
     static void LOG(String msg) {
-        Log.d("PIF/Java", msg);
+        Log.d("FGP/Java", msg);
     }
 }

@@ -1,7 +1,7 @@
-id=playintegrityfix
-name=Play Integrity Fork
-version=v11
-versionCode=110001
-author=osm0sis & chiteroman @ xda-developers
-description=Fix ctsProfile (SafetyNet) and DEVICE (Play Integrity) verdicts
-updateJson=https://raw.githubusercontent.com/osm0sis/PlayIntegrityFork/main/update.json
+id=unlimitedphotos
+name=Google Photos Unlimited Backup
+version=v0.3
+versionCode=3000
+author=Rev4N - Credits to osm0sis & chiteroman
+description=Google Photos Unlimited Backup by Spoofing into Pixel XL.
+updateJson=https://raw.githubusercontent.com/Rev4N1/GPhotosUnlimited/main/update.json
